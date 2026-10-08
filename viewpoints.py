@@ -12,7 +12,7 @@ from projectaria_tools.core.mps.utils import get_nearest_pose
 
 def read_mesh(mesh_path):
     if not mesh_path.is_file():
-        sys.exit(f"{mesh_path}: not found (run gazepoint.py first; it writes the mesh next to the CSV)")
+        sys.exit(f"{mesh_path}: not found (run ariagazecast.py first; it writes the mesh next to the CSV)")
     data = mesh_path.read_bytes()
     if data[:4] != b"glTF":
         sys.exit(f"{mesh_path}: not a GLB file")

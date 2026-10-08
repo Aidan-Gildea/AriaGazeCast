@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="680" height="500" viewBox="0 0 680 500" role="img" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
-  <title>gazepoint data flow</title>
+  <title>ariagazecast data flow</title>
   <desc>Eye gaze and calibration from the VRS, and the trajectory and semi-dense points from MPS slam, become world-space gaze rays and a Poisson mesh. Their first intersection is written to a gaze points CSV, and the mesh is saved as a GLB, both next to the VRS. viewpoints.py shows both in Rerun.</desc>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">

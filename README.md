@@ -2,13 +2,13 @@
 Raycast Eye Gaze using Aria Gen2 Glasses
 
 <div align="center">
-  <img src="assets/rerun.gif" alt="GazePoint result in the Rerun viewer" style="max-width: 100%; height: auto;"/>
+  <img src="assets/rerun.gif" alt="AriaGazeCast result in the Rerun viewer" style="max-width: 100%; height: auto;"/>
 </div>
 
-GazePoint finds where in 3D the wearer of Project Aria Gen 2 glasses was looking. It casts each eye-gaze sample from the .vrs recording onto a mesh built from the MPS SLAM semi-dense point cloud, then writes one CSV row per sample: <u>time</u>, <u>hit or miss</u>, and the <u>3D point</u>. The mesh is saved alongside it.
+AriaGazeCast finds where in 3D the wearer of Project Aria Gen 2 glasses was looking. It casts each eye-gaze sample from the .vrs recording onto a mesh built from the MPS SLAM semi-dense point cloud, then writes one CSV row per sample: <u>time</u>, <u>hit or miss</u>, and the <u>3D point</u>. The mesh is saved alongside it.
 
 <div align="center">
-  <img src="assets/pipeline.svg" alt="gazepoint data flow" width="600"/>
+  <img src="assets/pipeline.svg" alt="ariagazecast data flow" width="600"/>
 </div>
 
 
@@ -17,8 +17,8 @@ GazePoint finds where in 3D the wearer of Project Aria Gen 2 glasses was looking
 You need **Python 3.10–3.12**.
 
 ```bash
-git clone https://github.com/<your-account>/GazePoint.git
-cd GazePoint
+git clone https://github.com/<your-account>/AriaGazeCast.git
+cd AriaGazeCast
 pip install -r requirements.txt
 ```
 
@@ -39,7 +39,7 @@ aria_mps single -i "aria/Outside_20260812_141244.vrs" --features SLAM
 **3. Find the gaze points.** Pass the `.vrs`. Two files are written next to it: `<recording>_gaze_points.csv`, and the mesh the rays were cast at, `<recording>_gaze_mesh.glb`.
 
 ```bash
-python gazepoint.py "aria/Outside_20260812_141244.vrs"
+python ariagazecast.py "aria/Outside_20260812_141244.vrs"
 ```
 
 | Column | Meaning |
@@ -55,7 +55,7 @@ python gazepoint.py "aria/Outside_20260812_141244.vrs"
 python viewpoints.py "aria/Outside_20260812_141244_gaze_points.csv"
 ```
 
-**5. Tune (optional).** These are the constants at the top of `gazepoint.py`.
+**5. Tune (optional).** These are the constants at the top of `ariagazecast.py`.
 
 | Constant | Default | Effect |
 | --- | --- | --- |

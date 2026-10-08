@@ -31,7 +31,7 @@ def build_mesh(points, glasses_positions):
 
 def main():
     if len(sys.argv) != 2:
-        sys.exit("usage: python gazepoint.py RECORDING.vrs   (MPS output must be in mps_RECORDING_vrs/ next to it)")
+        sys.exit("usage: python ariagazecast.py RECORDING.vrs   (MPS output must be in mps_RECORDING_vrs/ next to it)")
     vrs = Path(sys.argv[1])
     slam = vrs.with_name(f"mps_{vrs.stem}_vrs") / "slam"
     out = vrs.with_name(vrs.stem + "_gaze_points.csv")
