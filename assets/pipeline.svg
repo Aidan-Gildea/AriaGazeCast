@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="404" viewBox="0 0 680 404" role="img" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <title>gazepoint data flow</title>
+  <desc>Eye gaze and calibration from the VRS, and the trajectory and semi-dense points from MPS slam, become world-space gaze rays and a Poisson mesh. Their first intersection is written to a gaze points CSV next to the VRS.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#888780" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <style>
+      .arr { stroke: #888780; stroke-width: 1.5; fill: none; }
+      .th { font-size: 14px; font-weight: 600; }
+      .ts { font-size: 12px; }
+      .in rect { fill: #EEEDFE; stroke: #534AB7; } .in text { fill: #3C3489; }
+      .op rect { fill: #F1EFE8; stroke: #5F5E5A; } .op text { fill: #2C2C2A; }
+      .out rect { fill: #E1F5EE; stroke: #0F6E56; } .out text { fill: #085041; }
+    </style>
+  </defs>
+
+  <g class="in"><rect x="110" y="30" width="200" height="56" rx="8" stroke-width="1"/>
+    <text class="th" x="210" y="48" text-anchor="middle" dominant-baseline="central">Recording (.vrs)</text>
+    <text class="ts" x="210" y="66" text-anchor="middle" dominant-baseline="central">Eye gaze, calibration</text></g>
+  <g class="in"><rect x="370" y="30" width="200" height="56" rx="8" stroke-width="1"/>
+    <text class="th" x="470" y="48" text-anchor="middle" dominant-baseline="central">MPS slam/</text>
+    <text class="ts" x="470" y="66" text-anchor="middle" dominant-baseline="central">Trajectory, points</text></g>
+
+  <line x1="210" y1="88" x2="210" y2="124" class="arr" marker-end="url(#arrow)"/>
+  <line x1="470" y1="88" x2="470" y2="124" class="arr" marker-end="url(#arrow)"/>
+  <line x1="400" y1="88" x2="292" y2="124" class="arr" marker-end="url(#arrow)"/>
+
+  <g class="op"><rect x="110" y="126" width="200" height="56" rx="8" stroke-width="1"/>
+    <text class="th" x="210" y="144" text-anchor="middle" dominant-baseline="central">Gaze rays</text>
+    <text class="ts" x="210" y="162" text-anchor="middle" dominant-baseline="central">Glasses pose × gaze</text></g>
+  <g class="op"><rect x="370" y="126" width="200" height="56" rx="8" stroke-width="1"/>
+    <text class="th" x="470" y="144" text-anchor="middle" dominant-baseline="central">Poisson mesh</text>
+    <text class="ts" x="470" y="162" text-anchor="middle" dominant-baseline="central">From semi-dense points</text></g>
+
+  <line x1="230" y1="184" x2="300" y2="220" class="arr" marker-end="url(#arrow)"/>
+  <line x1="450" y1="184" x2="380" y2="220" class="arr" marker-end="url(#arrow)"/>
+
+  <g class="op"><rect x="240" y="222" width="200" height="56" rx="8" stroke-width="1"/>
+    <text class="th" x="340" y="240" text-anchor="middle" dominant-baseline="central">Ray-mesh hit</text>
+    <text class="ts" x="340" y="258" text-anchor="middle" dominant-baseline="central">First intersection</text></g>
+
+  <line x1="340" y1="280" x2="340" y2="316" class="arr" marker-end="url(#arrow)"/>
+
+  <g class="out"><rect x="240" y="318" width="200" height="56" rx="8" stroke-width="1"/>
+    <text class="th" x="340" y="336" text-anchor="middle" dominant-baseline="central">Gaze points CSV</text>
+    <text class="ts" x="340" y="354" text-anchor="middle" dominant-baseline="central">Time, hit, x, y, z, distance</text></g>
+</svg>

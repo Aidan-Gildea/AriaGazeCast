@@ -1,0 +1,5 @@
+projectaria-tools>=2.1.4
+open3d>=0.19
+numpy
+scipy
+rerun-sdk

@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+.DS_Store
+*.vrs
+mps_*/
+*_gaze_points.csv
