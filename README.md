@@ -1,4 +1,5 @@
-# GazePoint
+# AriaGazeCast
+Raycast Eye Gaze using Aria Gen2 Glasses
 
 <div align="center">
   <img src="assets/rerun.gif" alt="GazePoint result in the Rerun viewer" style="max-width: 100%; height: auto;"/>
