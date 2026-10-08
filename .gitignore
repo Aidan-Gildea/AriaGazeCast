@@ -4,3 +4,4 @@ __pycache__/
 *.vrs
 mps_*/
 *_gaze_points.csv
+*_gaze_mesh.glb

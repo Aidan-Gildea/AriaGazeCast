@@ -1,23 +1,23 @@
 # GazePoint
 
 <div align="center">
-  <img src="assets/rerun.png" alt="GazePoint result in the Rerun viewer" style="max-width: 100%; height: auto;"/>
+  <img src="assets/rerun.gif" alt="GazePoint result in the Rerun viewer" style="max-width: 100%; height: auto;"/>
 </div>
 
-GazePoint finds where in 3D the wearer of Project Aria Gen 2 glasses was looking. It casts each eye-gaze sample from the recording onto a mesh built from the MPS point cloud, then writes one CSV row per sample: time, hit or miss, and the 3D point.
+GazePoint finds where in 3D the wearer of Project Aria Gen 2 glasses was looking. It casts each eye-gaze sample from the .vrs recording onto a mesh built from the MPS SLAM semi-dense point cloud, then writes one CSV row per sample: <u>time</u>, <u>hit or miss</u>, and the <u>3D point</u>. The mesh is saved alongside it.
 
 <div align="center">
   <img src="assets/pipeline.svg" alt="gazepoint data flow" width="600"/>
 </div>
 
+
 ## User Guide
 
-**1. Install.** You need an Apple Silicon Mac or x86-64 Linux, with Python 3.10–3.12.
+You need **Python 3.10–3.12**.
 
 ```bash
 git clone https://github.com/<your-account>/GazePoint.git
 cd GazePoint
-python3.11 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
@@ -35,7 +35,7 @@ pip install projectaria-mps
 aria_mps single -i "aria/Outside_20260812_141244.vrs" --features SLAM
 ```
 
-**3. Find the gaze points.** Pass the `.vrs`. The CSV is written next to it as `<recording>_gaze_points.csv`.
+**3. Find the gaze points.** Pass the `.vrs`. Two files are written next to it: `<recording>_gaze_points.csv`, and the mesh the rays were cast at, `<recording>_gaze_mesh.glb`.
 
 ```bash
 python gazepoint.py "aria/Outside_20260812_141244.vrs"
@@ -48,13 +48,13 @@ python gazepoint.py "aria/Outside_20260812_141244.vrs"
 | `x_m`, `y_m`, `z_m` | Gaze point in the MPS world frame, in metres, with Z up |
 | `distance_m` | Distance from the eyes to the gaze point |
 
-**4. View them.** This opens the Rerun viewer. Drag the timeline to follow the gaze. The CSV must still sit next to the MPS folder.
+**4. View them.** This opens the Rerun viewer with the mesh, the glasses' path and the gaze points. Drag the timeline to follow the gaze. Keep the CSV, the mesh and the MPS folder together. The viewer stops with an error if the mesh is missing or unreadable.
 
 ```bash
 python viewpoints.py "aria/Outside_20260812_141244_gaze_points.csv"
 ```
 
-**5. Tune (optional).** These are the constants at the top of `gazepoint.py`. If you change the first three, change them in `viewpoints.py` too.
+**5. Tune (optional).** These are the constants at the top of `gazepoint.py`.
 
 | Constant | Default | Effect |
 | --- | --- | --- |

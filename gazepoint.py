@@ -35,6 +35,7 @@ def main():
     vrs = Path(sys.argv[1])
     slam = vrs.with_name(f"mps_{vrs.stem}_vrs") / "slam"
     out = vrs.with_name(vrs.stem + "_gaze_points.csv")
+    mesh_out = vrs.with_name(vrs.stem + "_gaze_mesh.glb")
     if not vrs.is_file():
         sys.exit(f"{vrs}: not found")
     if not slam.is_dir():
@@ -54,6 +55,10 @@ def main():
     glasses = np.array([p.transform_world_device.translation()[0] for p in trajectory[::100]])
     mesh = build_mesh(xyz, glasses)
     print(f"mesh: {len(mesh.triangles):,} triangles from {len(xyz):,} semi-dense points")
+    mesh.compute_vertex_normals()
+    if not o3d.io.write_triangle_mesh(str(mesh_out), mesh):
+        sys.exit(f"{mesh_out}: could not write the mesh")
+    print(f"wrote {mesh_out}")
 
     T_device_cpf = provider.get_device_calibration().get_transform_device_cpf()
     times, rays = [], []
